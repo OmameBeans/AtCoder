@@ -18,11 +18,11 @@ bool StringSearch(string S, string T) {
     if(Hash_S == Hash_T) return 1;
     for(int i = 1; i < N; i++) {
         if(i+M-1 >= N) continue;
-        Hash_S = Hash_S*B, Hash_S %= MOD;
-        Hash_S -= ((ll)S[i-1]*t)%MOD;
-        Hash_S = (Hash_S+MOD)%MOD;
+        Hash_S = Hash_S*B, Hash_S %= M;
+        Hash_S -= ((ll)S[i-1]*T)%M;
+        Hash_S = (Hash_S+M)%M;
         Hash_S += (ll)S[i+M-1];
-        Hash_S %= MOD;
+        Hash_S %= M;
         if(Hash_S == Hash_T) return 1;
     }
     return 0;
