@@ -33,8 +33,8 @@ int LIS(vector<int> &A, int N,vector<int> &dp) {
 
 int main() {
     int N; cin >> N;
-    veci A(N); REP(i,N) cin >> A[i];
-    veci dp;
+    vector<int> A(N); for(int i = 0; i < N; i++) cin >> A[i];
+    vector<int> dp;
     cout << LIS(A,N,dp) << endl;
     return 0;
 }
