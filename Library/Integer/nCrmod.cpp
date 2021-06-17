@@ -17,13 +17,6 @@ struct nCrmod{
             finv[i] = finv[i - 1] * inv[i] % MOD;
         }
     }
-    ll modpow(ll a, int n) {
-        if(n == 0) return 1;
-        auto t = modpow(a,n/2);
-        t = t*t, t %= MOD;
-        if(n&1) t = t*a, t%= MOD;
-        return t;
-    }
     // n,kがそこまで大きくない
     ll com1(int n, int k) {
         if (n < k) return 0;
@@ -37,9 +30,9 @@ struct nCrmod{
         ll p = 1,q = 1;
         for(int i = 0; i < k; i++) {
             p *= n-i, p %= MOD;
-            q *= i, q %= MOD;
+            q *= inv[i+1], q %= MOD;
         }
-        return (p * modpow(q,MOD-2))%MOD;
+        return (p * q) % MOD;
     }
 
     ll COM(ll n, ll k) {

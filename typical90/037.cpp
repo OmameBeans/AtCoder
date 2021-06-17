@@ -28,6 +28,7 @@ struct SegTree {
         while(siz > x) x *= 2;
         n = x;
     }
+    void init(int siz) {val.assign(siz*4,e);}
     //位置iの要素をxにする
     void set(int i, T x) {
         i += n-1;
@@ -62,18 +63,20 @@ int main() {
     int W,N; cin >> W >> N;
     auto f = [](ll a, ll b) -> ll{return max(a,b);};
     ll e = -(1LL<<60);
-    vector<SegTree<ll>> dp(N+1,SegTree<ll>(MAX,f,e));
-    dp[0].set(0,0LL);
+    SegTree<ll> dp(MAX,f,e), pre_dp(MAX,f,e);
+    dp.set(0,0LL);
     vector<int> L(N),R(N);
     vector<ll> V(N);
     REP(i,N) cin >> L[i] >> R[i] >> V[i];
     for(int i = 1; i <= N; i++) {
+        swap(dp.val,pre_dp.val);
+        dp.init(MAX);
         for(int j = 0; j < W+1; j++) {
-            dp[i].update(j,dp[i-1].query(j,j+1),f);
-            if(dp[i-1].query(j-R[i-1],j-L[i-1]+1) >= 0)dp[i].update(j,dp[i-1].query(j-R[i-1],j-L[i-1]+1)+V[i-1],f);
+            dp.update(j,pre_dp.query(j,j+1),f);
+            dp.update(j,pre_dp.query(j-R[i-1],j-L[i-1]+1)+V[i-1],f);
         }
     }
-    if(dp[N].query(W,W+1) > 0) cout << dp[N].query(W,W+1) << endl;
+    if(dp.query(W,W+1) > 0) cout << dp.query(W,W+1) << endl;
     else cout << -1 << endl;
     return 0;
 }
