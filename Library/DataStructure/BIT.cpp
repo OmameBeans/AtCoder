@@ -7,7 +7,7 @@ struct BIT{
     int N;
     vector<T> bit;
     BIT(int n) : N(n+1), bit(N,0) {}
-    void add(int x, int i) {
+    void add(int i, T x) {
         for(int idx = i; idx < N; idx += (idx & -idx)) bit[idx] += x;
     }
     T sum(int i) {
@@ -15,7 +15,7 @@ struct BIT{
         for(int idx = i; idx > 0; idx -= (idx & -idx)) tot += bit[idx];
         return tot;
     }
-    T sum(int l, int r) {return sum[r] - sum[l];}
+    T sum(int l, int r) {return sum(r) - sum(l);}
     int lower_bound(T w) {
         if(w <= 0) return 0;
         else {
