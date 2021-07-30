@@ -1,7 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
-
 template <typename T>
 struct BIT{
     int N;
@@ -39,7 +35,8 @@ ll Number_of_inversions(vector<int> A) {
     ll tot = 0;
     BIT<int> seg(MAX);
     for(int i = 0; i < M; i++) {
-        tot += seg.sum(A[i]+1,MAX);
+        tot += i-seg.sum(A[i]-1);
         seg.add(A[i],1);
     }
+    return tot;
 }
