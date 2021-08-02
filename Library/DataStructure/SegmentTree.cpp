@@ -1,3 +1,9 @@
+/*
+関数と単位元は以下のように宣言する
+auto f = [](ll a, ll b) -> ll {return gcd(a,b);};
+ll e = 0;
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 using ll = long long;
