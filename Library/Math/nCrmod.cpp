@@ -5,8 +5,9 @@ using ll = long long;
 const int MOD = 1000000007;
 const int MAX = 5101010;
 
+vector<ll> fac(MAX),finv(MAX),inv(MAX);
+
 void COMinit() {
-    vector<ll> fac(MAX),finv(MAX),inv(MAX);
     fac[0] = fac[1] = 1;
     finv[0] = finv[1] = 1;
     inv[1] = 1;
