@@ -1,4 +1,4 @@
-//verify : https://atcoder.jp/contests/practice2/tasks/practice2_f
+//verify : https://judge.yosupo.jp/problem/convolution_mod
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -35,7 +35,7 @@ class NTT {
             }
         }
 
-        void DFT(vector<long long> &f, bool inverse = false) {
+        inline void DFT(vector<long long> &f, bool inverse = false) {
             int n = f.size();
             int logn = log2(n);
             if(n == 1) return;
@@ -110,6 +110,6 @@ int main() {
     ntt.init();
     auto f = ntt.Convolute<long long>(A,B);
 
-    for(int i = 0; i < N+M-1; i++) cout << f[i] << " ";
+    for(int i = 0; i < N+M-1; i++) printf("%lld ", f[i]);
     cout << endl;
 }
