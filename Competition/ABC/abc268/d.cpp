@@ -55,7 +55,7 @@ int main() {
             string ans = "";
             REP(i,N) ans += L[i];
             //cout << ans << endl;
-            st.insert(ans);
+            if(ans.size() >= 3) st.insert(ans);
             return;
         }
 
